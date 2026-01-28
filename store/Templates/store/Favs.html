@@ -1,0 +1,339 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Favorites - Pickly</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fa;
+        }
+
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            padding: 15px 0;
+        }
+
+        .navbar-brand {
+            font-size: 28px;
+            font-weight: bold;
+            color: #08C265 !important;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #ff4757 0%, #e84118 100%);
+            padding: 40px 0;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .page-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .heart-icon {
+            font-size: 36px;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+        }
+
+        .favorites-container {
+            margin-bottom: 60px;
+        }
+
+        .favorites-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            background: white;
+            padding: 20px 25px;
+            border-radius: 15px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+        }
+
+        .favorites-count {
+            font-size: 18px;
+            color: #666;
+        }
+
+        .btn-clear-favorites {
+            background: #ff4757;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-clear-favorites:hover {
+            background: #e84118;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            background: #f0f0f0;
+        }
+
+        .love-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #ff4757;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .love-btn:hover {
+            background: #e84118;
+            transform: scale(1.1);
+        }
+
+        .love-btn i {
+            color: white;
+            font-size: 18px;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .product-category {
+            color: #999;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-size: 22px;
+            font-weight: 700;
+            color: #08C265;
+            margin-bottom: 15px;
+        }
+
+        .btn-add-cart {
+            width: 100%;
+            background: #08C265;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-add-cart:hover {
+            background: #06a856;
+        }
+
+        .empty-favorites {
+            text-align: center;
+            padding: 80px 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+        }
+
+        .empty-icon {
+            font-size: 100px;
+            color: #ddd;
+            margin-bottom: 25px;
+        }
+
+        .empty-favorites h3 {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        .empty-favorites p {
+            color: #999;
+            margin-bottom: 30px;
+        }
+
+        .btn-start-shopping {
+            background: #08C265;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-start-shopping:hover {
+            background: #06a856;
+        }
+
+        .added-notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: #08C265;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            animation: slideIn 0.3s ease;
+            z-index: 1000;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'store' %}">
+                <img src="{% static 'images/logo.svg' %}" width="90" height="90" class="d-inline-block align-top mr-2" alt="Pickly Logo">
+            </a>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="container">
+            <h1 class="page-title">
+                <span class="heart-icon">❤️</span>
+                My Favorites
+            </h1>
+            <p style="margin: 10px 0 0 0; opacity: 0.9;">Save your favorite products here!</p>
+        </div>
+    </div>
+
+    <!-- Favorites Content -->
+    <div class="container favorites-container">
+        {% if favorites %}
+        <div class="favorites-header" id="favorites-header">
+            <div class="favorites-count">
+                <strong><span id="favorites-count">{{favorites|length}}</span> items</strong> in your favorites
+            </div>
+        </div>
+
+        <div class="row" id="favorites-container">
+            {% for item in favorites %}
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="product-card">
+                    <button class="love-btn toggle-fav" data-product="{{item.product.id}}">
+                        <i class="fas fa-heart"></i>
+                    </button>
+                    {% if item.product.image %}
+                    <img src="{{item.product.image.url}}" alt="{{item.product.name}}" class="product-image">
+                    {% else %}
+                    <img src="{% static 'images/placeholder.png' %}" class="product-image">
+                    {% endif %}
+                    <div class="product-info">
+                        <h5 class="product-name">{{item.product.name}}</h5>
+                        <p class="product-category">{{item.product.category}}</p>
+                        <p class="product-price">L.E {{item.product.price}}</p>
+                        <button class="btn-add-cart update-cart" data-product="{{item.product.id}}" data-action="add">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="empty-favorites" id="empty-state">
+            <div class="empty-icon">💔</div>
+            <h3>No Favorites Yet</h3>
+            <p>Start adding products you love to see them here!</p>
+            <a href="{% url 'store' %}" class="btn-start-shopping" style="text-decoration: none; display: inline-block;">
+                <i class="fas fa-shopping-bag"></i> Start Shopping
+            </a>
+        </div>
+        {% endif %}
+    </div>
+
+    <script type="text/javascript">
+        var user = '{{request.user}}'
+
+        function getToken(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        var csrftoken = getToken('csrftoken');
+    </script>
+    <script src="{% static 'js/cart.js' %}"></script>
+</body>
+</html>

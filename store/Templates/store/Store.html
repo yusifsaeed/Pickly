@@ -1,0 +1,99 @@
+{% extends 'store/main.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Categories Section -->
+<section class="categories-section">
+    <div class="container">
+        <h2 class="section-title">Shop by Category</h2>
+        <div class="row">
+            {% for category in categories %}
+            <div class="col-md-3 col-sm-6">
+                <a href="?category={{ category.id }}" style="text-decoration: none;">
+                    <div class="category-card {% if selected_category == category.id|stringformat:'s' %}active-category{% endif %}">
+                        <div class="category-icon">{{ category.icon }}</div>
+                        <p class="category-name">{{ category.category_name }}</p>
+                    </div>
+                </a>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <p style="text-align: center; padding: 30px; color: #999;">
+                    No categories yet. <a href="/admin/" style="color: #08C265;">Add categories in admin panel</a>
+                </p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Products Section -->
+<section class="products-section">
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+            <h2 class="section-title" style="margin-bottom: 0;">
+                {% if selected_category %}
+                    {{ products.first.category.category_name }}
+                {% else %}
+                    All Products
+                {% endif %}
+            </h2>
+            {% if selected_category %}
+            <a href="{% url 'store' %}" class="btn" style="background: #08C265; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none;">
+                <i class="fas fa-times"></i> Clear Filter
+            </a>
+            {% endif %}
+        </div>
+        
+        <div class="row">
+            {% for product in products %}
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="product-card">
+                    <button class="love-btn toggle-fav" data-product="{{product.id}}">
+                        {% if product.id in user_favorites %}
+                        <i class="fas fa-heart" style="color: red;"></i>
+                        {% else %}
+                        <i class="far fa-heart"></i>
+                        {% endif %}
+                    </button>
+                    {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
+                    {% else %}
+                    <img src="{% static 'images/placeholder.png' %}" alt="{{ product.name }}" class="product-image">
+                    {% endif %}
+                    <div class="product-info">
+                        <h5 class="product-name">{{ product.name }}</h5>
+                        <p class="product-price">L.E {{ product.price }}</p>
+                        <p class="product-category" style="display: inline-block; font-size: 11px; font-weight: 500; color: #399e6d; background: rgba(8, 194, 101, 0.1); padding: 4px 12px; border-radius: 20px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; border: 1px solid rgba(8, 194, 101, 0.2);">{{product.category}}</p>
+                        <button class="btn-add-cart update-cart" data-product="{{product.id}}" data-action="add">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <div style="text-align: center; padding: 80px 20px; background: white; border-radius: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.08);">
+                    <i class="fas fa-shopping-basket" style="font-size: 80px; color: #ddd; margin-bottom: 20px;"></i>
+                    <h3 style="color: #666; margin-bottom: 15px;">No Products Found</h3>
+                    <p style="color: #999;">
+                        {% if selected_category %}
+                            No products in this category yet.
+                        {% else %}
+                            No products available. <a href="/admin/" style="color: #08C265;">Add products in admin panel</a>
+                        {% endif %}
+                    </p>
+                    {% if selected_category %}
+                    <a href="{% url 'store' %}" class="btn" style="background: #08C265; color: white; padding: 12px 30px; border-radius: 8px; text-decoration: none; display: inline-block; margin-top: 20px;">
+                        View All Products
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

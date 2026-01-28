@@ -1,0 +1,340 @@
+/* 
+   Save this as: static/css/custom_admin.css
+   Pickly Admin Custom Styling
+*/
+
+/* ===========================
+   Brand Colors
+   =========================== */
+   :root {
+    --pickly-green: #08C265;
+    --pickly-green-dark: #06a856;
+    --pickly-green-light: #e6f9f0;
+}
+
+/* ===========================
+   Global Overrides
+   =========================== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+}
+
+/* Ensure Font Awesome icons render correctly despite global font override */
+.fa, .fas, .far { 
+    font-family: "Font Awesome 5 Free" !important; 
+}
+.fab { 
+    font-family: "Font Awesome 5 Brands" !important; 
+}
+.fas { font-weight: 900 !important; }
+.far { font-weight: 400 !important; }
+
+/* ===========================
+   Navbar Customization
+   =========================== */
+.main-header.navbar {
+    background: white !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08) !important;
+    border-bottom: 3px solid var(--pickly-green) !important;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #333 !important;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    color: var(--pickly-green) !important;
+}
+
+/* Brand logo */
+.brand-link {
+    border-bottom: 1px solid rgb(0, 0, 0) !important;
+    background: linear-gradient(135deg, var(--pickly-green) 0%, var(--pickly-green-dark) 100%) !important;
+}
+
+.brand-image {
+    max-height: 45px !important;
+    background: #ffffff !important;
+    padding: 5px;
+    border-radius: 12px;
+    border: none !important;
+    box-shadow: none !important;
+    opacity: 1 !important;
+}
+
+.elevation-3 {
+    box-shadow: none !important;
+}
+
+.brand-text {
+    color: rgb(25, 255, 255) !important ;
+    font-weight: 700 !important;
+    font-size: 20px !important;
+    opacity: 0 !important;
+
+}
+
+/* ===========================
+   Sidebar Customization
+   =========================== */
+.main-sidebar {
+    background: #2d3436 !important;
+}
+
+.sidebar-dark-success .nav-sidebar > .nav-item > .nav-link.active {
+    background: linear-gradient(135deg, var(--pickly-green) 0%, var(--pickly-green-dark) 100%) !important;
+    color: white !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 10px rgba(8, 194, 101, 0.3) !important;
+}
+
+.nav-sidebar .nav-link:hover {
+    background: rgba(8, 194, 101, 0.15) !important;
+    border-radius: 8px !important;
+}
+
+.nav-sidebar .nav-link {
+    transition: all 0.3s ease !important;
+    margin: 3px 8px !important;
+}
+
+/* Sidebar icons */
+.nav-icon {
+    color: var(--pickly-green) !important;
+}
+
+/* ===========================
+   Login Page Customization
+   =========================== */
+.login-page {
+    background: linear-gradient(135deg, var(--pickly-green) 0%, var(--pickly-green-dark) 100%) !important;
+}
+
+.login-box,
+.register-box {
+    border-radius: 20px !important;
+    box-shadow: 0 10px 50px rgba(0,0,0,0.2) !important;
+    overflow: hidden;
+}
+
+.login-card-body,
+.register-card-body {
+    border-radius: 20px !important;
+    padding: 40px !important;
+}
+
+.login-logo a,
+.register-logo a {
+    color: white !important;
+    font-weight: 700 !important;
+    font-size: 32px !important;
+}
+
+.btn-primary {
+    background: var(--pickly-green) !important;
+    border-color: var(--pickly-green) !important;
+    border-radius: 10px !important;
+    padding: 12px 30px !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn-primary:hover {
+    background: var(--pickly-green-dark) !important;
+    border-color: var(--pickly-green-dark) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 5px 15px rgba(8, 194, 101, 0.3) !important;
+}
+
+/* ===========================
+   Cards & Content
+   =========================== */
+.card {
+    border-radius: 15px !important;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.08) !important;
+    border: none !important;
+    margin-bottom: 20px !important;
+}
+
+.card-header {
+    background: linear-gradient(135deg, var(--pickly-green) 0%, var(--pickly-green-dark) 100%) !important;
+    color: white !important;
+    border-radius: 15px 15px 0 0 !important;
+    font-weight: 600 !important;
+    border: none !important;
+}
+
+.card-title {
+    font-weight: 700 !important;
+    margin-bottom: 0 !important;
+}
+
+/* ===========================
+   Buttons
+   =========================== */
+.btn-success {
+    background: var(--pickly-green) !important;
+    border-color: var(--pickly-green) !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+}
+
+.btn-success:hover {
+    background: var(--pickly-green-dark) !important;
+    border-color: var(--pickly-green-dark) !important;
+}
+
+.btn {
+    border-radius: 8px !important;
+    font-weight: 500 !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15) !important;
+}
+
+/* ===========================
+   Forms
+   =========================== */
+.form-control {
+    border: 2px solid #e0e0e0 !important;
+    border-radius: 10px !important;
+    padding: 12px 15px !important;
+    transition: all 0.3s ease !important;
+}
+
+.form-control:focus {
+    border-color: var(--pickly-green) !important;
+    box-shadow: 0 0 0 3px rgba(8, 194, 101, 0.1) !important;
+}
+
+/* ===========================
+   Tables
+   =========================== */
+.table {
+    border-radius: 10px !important;
+    overflow: hidden !important;
+}
+
+.table thead th {
+    background: var(--pickly-green-light) !important;
+    color: var(--pickly-green-dark) !important;
+    font-weight: 700 !important;
+    border: none !important;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background: rgba(8, 194, 101, 0.03) !important;
+}
+
+.table tbody tr:hover {
+    background: var(--pickly-green-light) !important;
+}
+
+/* ===========================
+   Badges & Labels
+   =========================== */
+.badge-success {
+    background: var(--pickly-green) !important;
+}
+
+.badge {
+    border-radius: 6px !important;
+    padding: 6px 12px !important;
+    font-weight: 600 !important;
+}
+
+/* ===========================
+   Info Boxes (Dashboard)
+   =========================== */
+.info-box {
+    border-radius: 12px !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08) !important;
+    transition: all 0.3s ease !important;
+}
+
+.info-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+}
+
+.info-box-icon {
+    border-radius: 12px 0 0 12px !important;
+}
+
+.bg-success {
+    background: linear-gradient(135deg, var(--pickly-green) 0%, var(--pickly-green-dark) 100%) !important;
+}
+
+/* ===========================
+   Pagination
+   =========================== */
+.pagination .page-link {
+    color: var(--pickly-green) !important;
+    border-radius: 8px !important;
+    margin: 0 3px !important;
+    border: 2px solid #e0e0e0 !important;
+}
+
+.pagination .page-item.active .page-link {
+    background: var(--pickly-green) !important;
+    border-color: var(--pickly-green) !important;
+    color: white !important;
+}
+
+.pagination .page-link:hover {
+    background: var(--pickly-green-light) !important;
+    border-color: var(--pickly-green) !important;
+}
+
+/* ===========================
+   Alerts
+   =========================== */
+.alert {
+    border-radius: 12px !important;
+    border: none !important;
+}
+
+.alert-success {
+    background: var(--pickly-green-light) !important;
+    color: var(--pickly-green-dark) !important;
+}
+
+/* ===========================
+   Custom Scrollbar
+   =========================== */
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: var(--pickly-green);
+    border-radius: 10px;
+}
+
+/* ===========================
+   Footer
+   =========================== */
+.main-footer {
+    background: white !important;
+    border-top: 2px solid var(--pickly-green-light) !important;
+}
+
+/* ===========================
+   Responsive Adjustments
+   =========================== */
+@media (max-width: 768px) {
+    .brand-text {
+        display: none !important;
+    }
+    
+    .card {
+        margin-bottom: 15px !important;
+    }
+}
